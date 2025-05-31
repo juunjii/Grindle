@@ -1,0 +1,5 @@
+services:
+  grindle-docker:
+    ports:
+      - "3000:3000"
+    build: .
