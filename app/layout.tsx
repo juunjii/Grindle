@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
-import { Mona_Sans } from "next/font/google";
+import { DM_Sans } from "next/font/google";
 import "./globals.css";
 
-const monaSans = Mona_Sans({
-  variable: "--font-mona-sans",
+const dmSans = DM_Sans({
   subsets: ["latin"],
 });
 
-
 export const metadata: Metadata = {
   title: "Grindle",
-  description: "An intelligent platform that helps users manage, optimize, and personalize their job search, from progress tracking to actionable insights.",
+  description:
+    "An intelligent platform that helps users manage, optimize, and personalize their job search, from progress tracking to actionable insights.",
 };
 
 export default function RootLayout({
@@ -19,10 +18,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${monaSans.className} antialiased`}
-      >
+    <html lang="en" className="relative">
+      <body className={`${dmSans.className} "antialiased bg-[#EAEEFE]`}>
         {children}
       </body>
     </html>
