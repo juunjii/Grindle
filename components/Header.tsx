@@ -3,9 +3,9 @@ import Image from "next/image";
 
 const Header = () => {
   return (
-    <header className="sticky top-0">
-      <div className="py-5 px-10 md:px-30 items-center">
-        <div className="flex items-center justify-between">
+    <header className="bg- sticky top-0 backdrop-blur-sm">
+      <div className="py-5 px-10 md:px-15 items-center">
+        <div className="flex items-center gap-3 justify-between">
           <Image
             src="/grindle.svg"
             alt="grindle-logo"
@@ -19,13 +19,21 @@ const Header = () => {
             width={20}
             className="md:hidden"
           />
-          <nav className="hidden md:flex gap-10 text-black/60 text-xl items-center justify-self-end">
-            <a href="#">About</a>
-            <a href="#">Features</a>
-            <a href="#">Insights</a>
-            <a href="#">Help</a>
+          <nav className="navbar gap-10">
+            <a className="anchor" href="#">
+              About
+            </a>
+            <a className="anchor" href="#">
+              Features
+            </a>
+            <a className="anchor" href="#">
+              Insights
+            </a>
+            <a className="anchor" href="#">
+              Help
+            </a>
           </nav>
-          <nav className="hidden md:flex gap-6 text-black/60 text-xl items-center justify-seld-end">
+          <nav className="navbar gap-6">
             <button className="auth-button bg-[#E8DB7D] text-black">
               Sign Up
             </button>
