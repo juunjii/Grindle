@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import { Button } from "./ui/button";
 
 const Header = () => {
   return (
@@ -34,12 +35,18 @@ const Header = () => {
             </a>
           </nav>
           <nav className="navbar gap-6">
-            <button className="auth-button bg-[#E8DB7D] text-black">
+            <Button
+              className="text-xl font-bold p-6 bg-[#E8DB7D] text-black hover:bg-[#D6C965]"
+              effect="ringHover"
+            >
               Sign Up
-            </button>
-            <button className="auth-button bg-[#21A0A0] text-white">
+            </Button>
+            <Button
+              className="text-xl font-bold p-6 bg-[#21A0A0] text-white hover:bg-[#1F8C8C]"
+              effect="ringHover"
+            >
               Log In
-            </button>
+            </Button>
           </nav>
         </div>
       </div>

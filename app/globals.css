@@ -108,7 +108,7 @@
 }
 
 :root {
-  --radius: 0.8rem;
+  --radius: 0.85rem;
 
   --background: oklch(1 0 0);
 
@@ -134,7 +134,7 @@
 
   --muted-foreground: oklch(0.556 0 0);
 
-  --accent: oklch(0.97 0 0);
+  --accent: oklch(0.8086 0 0);
 
   --accent-foreground: oklch(0.205 0 0);
 
@@ -253,10 +253,6 @@
 
   .auth-layout {
     @apply flex items-center justify-center mx-auto max-w-7xl min-h-screen max-sm:px-4 max-sm:py-8;
-  }
-
-  .auth-button {
-    @apply px-4 py-2 rounded-lg font-medium inline-flex justify-center items-center tracking-tight;
   }
 
   .anchor {
