@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
 
@@ -18,10 +18,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="relative">
+    <html lang="en" className="relative !scroll-smooth">
       <body className={`${dmSans.className} "antialiased bg-[#EAEEFE]`}>
         {children}
       </body>
     </html>
   );
+}
+
+export const viewport: Viewport = {
+    initialScale: 1,
+    width: 'device-width'
 }

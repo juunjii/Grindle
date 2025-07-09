@@ -3,23 +3,23 @@ import { ChartLine, NotebookPen, BriefcaseBusiness } from "lucide-react";
 
 function FloatingNav() {
   return (
-    <div className="sticky top-30 w-sm">
-      <nav className="px-20 md:flex gap-10 text-black/60 text-xl items-center bg-[#f7f7f7]">
-        <a className="text-base py-5" href="#">
-          <span>
+    <div className="flex justify-center sticky top-30">
+      <nav className="rounded-xl px-6 flex gap-10 text-black/30 text-xl bg-[#f7f7f7]">
+        <a className="floating-nav text-base py-5" href="#job-tracker">
+          <span className="flex justify-center">
             <NotebookPen />
           </span>
           <span>Job Tracker</span>
         </a>
 
-        <a className="" href="#">
-          <span className="text-center">
+        <a className="floating-nav text-base py-5 " href="#job-search">
+          <span className="flex justify-center">
             <BriefcaseBusiness />
           </span>
-          <span>Job Search</span>
+          <span className="">Job Search</span>
         </a>
-        <a className="" href="#">
-          <span>
+        <a className="floating-nav text-base py-5" href="#analytics">
+          <span className="flex justify-center">
             <ChartLine />
           </span>
           <span>Analytics</span>

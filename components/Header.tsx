@@ -4,9 +4,9 @@ import { Button } from "./ui/button";
 
 const Header = () => {
   return (
-    <header className="mx-auto sticky top-0 backdrop-blur-sm">
-      <div className="py-5 px-10 md:px-15">
-        <div className="flex items-center gap-20 max-w-[76rem] justify-between justify-self-center">
+    <header className="z-5 mx-auto sticky top-0 backdrop-blur-sm">
+      <div className="py-5 px-10 md:px-4">
+        <div className="flex items-center gap-2 md:gap-10 justify-between justify-self-center">
           <Image
             src="/grindle.svg"
             alt="grindle-logo"
@@ -34,7 +34,7 @@ const Header = () => {
               Help
             </a>
           </nav>
-          <nav className="navbar gap-6">
+          <nav className="navbar gap-2">
             <Button
               className="text-xl font-bold p-6 bg-[#E8DB7D] text-black hover:bg-[#D6C965]"
               effect="ringHover"
