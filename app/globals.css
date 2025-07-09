@@ -259,7 +259,7 @@
   }
 
   .anchor {
-    @apply hover:text-[#cbc06d] font-bold;
+    @apply hover:text-[#cbc06d];
   }
 
   .navbar {

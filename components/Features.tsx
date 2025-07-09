@@ -1,7 +1,11 @@
+"use client";
+
 import React from "react";
-import FloatingNav from "./FloatingNav";
+import { useState } from "react";
+import { FloatingNav } from "@/components/index";
 
 function Features() {
+  const [active, setActive] = useState();
   return (
     <>
       <div className=" bg-[#82cac8] py-5">
