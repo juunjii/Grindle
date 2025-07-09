@@ -1,10 +1,5 @@
-// import { Header, Hero } from "@/components";
+import { Header, Hero, Features, Help } from "@/components/index";
 import Image from "next/image";
-
-import Header from "../../components/Header"; // adjust relative path
-import Hero from "../../components/Hero";
-import Features from "../../components/Features";
-
 
 export default function Home() {
   return (
@@ -12,6 +7,7 @@ export default function Home() {
       <Header />
       <Hero />
       <Features />
+      <Help />
     </>
   );
 }

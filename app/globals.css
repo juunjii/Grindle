@@ -244,6 +244,9 @@
   body {
     @apply bg-background text-foreground;
   }
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 @layer components {
@@ -261,6 +264,10 @@
 
   .navbar {
     @apply hidden md:flex gap-10 text-black/60 text-xl items-center;
+  }
+
+  .hero-button {
+    @apply tracking-wide text-lg py-6 px-5
   }
 }
 
