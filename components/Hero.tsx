@@ -10,7 +10,7 @@ const Hero = () => {
       {/* "bg-[#046865] */}
       {/* bg-[#82cac8] */}
       <div className="md:pt-30 md:pb-50 text-center overflow-x-hidden">
-        <h1 className="text-7xl md:text-8xl py-3 font-bold tracking-tighter bg-gradient-to-b from-black to-[#604bb2] text-transparent bg-clip-text">
+        <h1 className="text-7xl px-2 md:text-8xl py-3 font-bold tracking-tighter bg-gradient-to-b from-black to-[#604bb2] text-transparent bg-clip-text">
           Your Career, Organized. <br />
           Your Next Job, Closer!
         </h1>

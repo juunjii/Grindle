@@ -244,9 +244,6 @@
   body {
     @apply bg-background text-foreground;
   }
-  html {
-    @apply !scroll-smooth leading-none;
-  }
 }
 
 @layer components {
@@ -258,12 +255,12 @@
     @apply flex items-center justify-center mx-auto max-w-7xl min-h-screen max-sm:px-4 max-sm:py-8;
   }
 
-  .anchor {
-    @apply hover:text-[#cbc06d];
+  .nav-hover {
+    @apply text-black/30;
   }
 
   .navbar {
-    @apply hidden md:flex gap-10 text-black/60 text-xl items-center;
+    @apply hidden md:flex gap-10 text-black/60 text-lg items-center;
   }
 
   .hero-button {
@@ -282,8 +279,12 @@
     @apply w-full;
   }
 
-  .floating-nav.active {
-     @apply text-[#cbc06d] font-semibold;
+  .small-nav {
+    @apply absolute md:hidden top-40 left-0 w-full border-2 border-white/40 flex flex-col items-center gap-6 font-semibold text-lg transition-all duration-300 ease-in-out;
+  }
+
+  .small-nav-item {
+    @apply w-full flex flex-col items-center gap-6 font-semibold text-lg transition-all duration-300 ease-in-out;
   }
 }
 
