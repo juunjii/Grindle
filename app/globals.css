@@ -244,6 +244,9 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  html {
+  }
 }
 
 @layer components {
@@ -252,7 +255,8 @@
   }
 
   .auth-layout {
-    @apply flex items-center justify-center mx-auto max-w-7xl min-h-screen max-sm:px-4 max-sm:py-8;
+    /* @apply flex items-center justify-center mx-auto max-w-7xl min-h-screen max-sm:px-4 max-sm:py-8; */
+    @apply flex items-center justify-center mx-auto md:py-10 max-w-7xl max-sm:px-4 max-sm:py-8 ;
   }
 
   .nav-hover {
@@ -280,7 +284,7 @@
   }
 
   .small-nav {
-    @apply absolute md:hidden top-40 left-0 w-full border-2 border-white/40 flex flex-col items-center gap-6 font-semibold text-lg transition-all duration-300 ease-in-out;
+    @apply bg-white/20 shadow-lg ring-1 ring-black/5 absolute md:hidden top-40 left-0 w-full flex flex-col items-center gap-6 font-semibold text-lg transition-all duration-300 ease-in-out;
   }
 
   .small-nav-item {

@@ -19,12 +19,12 @@ const Hero = () => {
           applications.
         </p>
         <div className="flex pb-5 gap-1 items-center justify-center">
-          <Button className="text-base md:text-lg" effect="shine" size="lg">
+          <Button className="text-base py-4 md:text-lg" effect="shine" size="sm">
             Get Started - its FREE!
           </Button>
           <Button
-            className="text-base"
-            size="lg"
+            className="text-base py-4"
+            size="sm"
             variant="ghost"
             effect="expandIcon"
             icon={ArrowRight}

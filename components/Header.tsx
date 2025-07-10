@@ -70,13 +70,13 @@ const Header = () => {
               className="text-lg  p-4 bg-[#E8DB7D] text-black hover:bg-[#D6C965]"
               effect="ringHover"
             >
-              Sign Up
+              <Link href="/sign-up">Sign up</Link>
             </Button>
             <Button
               className="text-lg  p-4 bg-[#21A0A0] text-black hover:bg-[#1F8C8C]"
               effect="ringHover"
             >
-              Log In
+              <Link href="/login">Log in</Link>
             </Button>
           </nav>
         </div>
