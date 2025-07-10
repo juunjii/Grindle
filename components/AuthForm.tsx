@@ -7,7 +7,6 @@ import { usePathname } from "next/navigation";
 const AuthForm = () => {
   const pathname = usePathname();
   const isSignUp = pathname === "/sign-up";
-  console.log(pathname); // e.g., "/auth/sign-up"
   return (
     <>
       <div className="md:w-lg bg-white/20 shadow-lg ring-1 ring-black/5 rounded-sm flex flex-col justify-center px-6 pb-10 md:py-8lg:px-8 overflow-hidden">

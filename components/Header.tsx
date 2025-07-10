@@ -20,7 +20,7 @@ const Header = () => {
 
   return (
     <header className="z-5 top-0 sticky backdrop-blur-sm">
-      <div className={`${isMenuOpen ? "pt-5 pb-96 " : "py-5"} `}>
+      <div className={`${isMenuOpen ? "pt-5 pb-83 " : "py-5"} `}>
         <div className="flex items-center md:gap-10 justify-between px-8 md:justify-self-center">
           <Link href="#">
             <Image
