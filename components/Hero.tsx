@@ -6,9 +6,6 @@ import { ArrowRight } from "lucide-react";
 const Hero = () => {
   return (
     <section>
-      {/* <div> */}
-      {/* "bg-[#046865] */}
-      {/* bg-[#82cac8] */}
       <div className="md:pt-30 md:pb-50 text-center overflow-x-hidden">
         <h1 className="text-7xl px-2 md:text-8xl py-3 font-bold tracking-tighter bg-gradient-to-b from-black to-[#604bb2] text-transparent bg-clip-text">
           Your Career, Organized. <br />
@@ -19,7 +16,11 @@ const Hero = () => {
           applications.
         </p>
         <div className="flex pb-5 gap-1 items-center justify-center">
-          <Button className="text-base py-4 md:text-lg" effect="shine" size="sm">
+          <Button
+            className="text-base py-4 md:text-lg"
+            effect="shine"
+            size="sm"
+          >
             Get Started - its FREE!
           </Button>
           <Button
@@ -34,7 +35,6 @@ const Hero = () => {
           </Button>
         </div>
       </div>
-      {/* </div> */}
     </section>
   );
 };

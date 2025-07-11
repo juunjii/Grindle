@@ -72,6 +72,12 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@theme {
+  --color-mint-300: oklch(0.87 0.05 194);
+  --color-mint-400: oklch(0.79 0.05 194);
+  --color-mint-500: oklch(0.74 0.07 194);
+}
+
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
 
@@ -143,11 +149,11 @@
 
   --color-sidebar-ring: var(--sidebar-ring);
 
-  /* Define animation variables mapping name → keyframe + timing */
+  /* shadcn enhanced button */
   --animate-shine: shine 3s ease-out infinite;
   --animate-gradient-flow: gradientFlow 10s ease 0s infinite normal none running;
 
-  /* Declare keyframes */
+  /* shadcn enhanced button */
   @keyframes shine {
     0% {
       background-position: 200% 0;
@@ -160,6 +166,7 @@
     }
   }
 
+  /* shadcn enhanced button */
   @keyframes gradientFlow {
     0% {
       background-position: 0% 50%;
@@ -246,6 +253,7 @@
   }
 
   html {
+    
   }
 }
 
@@ -256,7 +264,7 @@
 
   .auth-layout {
     /* @apply flex items-center justify-center mx-auto max-w-7xl min-h-screen max-sm:px-4 max-sm:py-8; */
-    @apply flex items-center justify-center mx-auto md:py-10 max-w-7xl max-sm:px-4 max-sm:py-8 ;
+    @apply flex items-center justify-center pt-10;
   }
 
   .nav-hover {
