@@ -38,26 +38,8 @@ function Help() {
         with desktop publishing software like Aldus PageMaker including versions
         of Lorem Ipsum
       </div>
-      
     </>
   );
 }
 
 export default Help;
-
-// {/* <li className="list-none w-full text-center p-4 cursor-pointer">
-//                 About
-//               </li>
-//               <li className="list-none w-full text-center p-4 cursor-pointer">
-//                 Insights
-//               </li>
-//               <Link href="#features" onClick={handleMenuClick}>
-//                 <li className="list-none w-full text-center p-4 cursor-pointer">
-//                   Features
-//                 </li>
-//               </Link>
-//               <Link href="#help" onClick={handleMenuClick}>
-//                 <li className="list-none w-full text-center p-4 cursor-pointer">
-//                   Help
-//                 </li>
-//               </Link> */}
