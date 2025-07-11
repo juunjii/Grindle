@@ -9,7 +9,7 @@ const AuthForm = () => {
   const isSignUp = pathname === "/sign-up";
   return (
     <>
-      <div className="md:w-lg bg-white/20 shadow-lg ring-1 ring-black/5 rounded-sm flex flex-col justify-center px-6 pb-10">
+      <div className="md:w-lg bg-white/0 backdrop-blur-sm shadow-lg ring-1 ring-black/5 rounded-sm flex flex-col justify-center px-6 pb-10">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
             {isSignUp ? "Create an account" : "Log in to your account"}
