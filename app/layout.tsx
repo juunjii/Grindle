@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="relative !scroll-smooth">
-      <body className={`${dmSans.className} "antialiased bg-[#EAEEFE]`}>
+      <body className={`${dmSans.className} antialiased bg-[#EAEEFE]`}>
         {children}
       </body>
     </html>
