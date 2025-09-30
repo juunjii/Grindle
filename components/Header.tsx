@@ -24,7 +24,7 @@ const Header = () => {
         <div className="flex items-center md:gap-10 justify-between px-8 md:justify-self-center">
           <Link href="#">
             <Image
-              className="hover:scale-105 transition-all"
+              className="hover:scale-105 transition-all h-auto"
               src="/grindle.svg"
               alt="grindle-logo"
               height={40}
@@ -50,6 +50,7 @@ const Header = () => {
                   key={item.name}
                   href={item.href}
                   onClick={handleMenuClick}
+                  // scroll={false}
                 >
                   <li className="list-none w-full text-center p-4 cursor-pointer">
                     {item.name}
