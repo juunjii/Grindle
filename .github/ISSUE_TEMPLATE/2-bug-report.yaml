@@ -1,0 +1,45 @@
+name: "🐛 Bug report"
+description: Create a reproducible bug report
+labels: ["bug"]
+type: Bug
+body:
+  - type: textarea
+    attributes:
+      label: To reproduce
+      description: Steps to reproduce the bug
+      placeholder: |
+        1. Go to '...'
+        2. Click on '....'
+        3. Scroll down to '....'
+        4. See error
+  - type: textarea
+    attributes:
+      label: Current behavior
+      description: Describe what is happening, including any errors or unexpected results.
+      placeholder: The system shows an incorrect behavior with ...
+  - type: textarea
+    attributes:
+      label: Expected behavior
+      description: A clear and concise description of what you expected to happen.
+      placeholder: The system should ...
+  - type: textarea
+    attributes:
+      label: Screenshots
+      description: Add screenshots to help explain your problem.
+      placeholder: Images or videos
+  - type: textarea
+    attributes:
+      label: Environment
+      description: |
+        examples:
+          - **OS:** Ubuntu 20.04
+          - **Browser:** Firefox 2.0
+      value: |
+        - OS:
+        - Browser:
+      render: markdown
+  - type: textarea
+    attributes:
+      label: Additional context
+      description: Other context about the problem
+      placeholder: This bug only happens on the first Monday at 3 pm.
