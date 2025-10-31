@@ -1,36 +1,26 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Grindle
 
-## Getting Started
+## Overview
 
-First, run the development server:
+Grindle is your smart, personalized job-search companion — built to make applying, tracking, and improving your job hunt faster and smarter. Instead of juggling spreadsheets, emails, and dozens of role descriptions, Grindle brings automation and insight to every step of your application workflow.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Why people should care
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Get clarity: see your applications, interviews, and outcomes in one place so nothing slips through the cracks.
+- Get tailored: automatically adapt your resumé and application to the job posting so you spend less time copy/pasting and more time applying with confidence.
+- Get insights: understand trends (what skills employers want) and which applications are converting into interviews.
+- Discover more: surface hidden roles and relevant opportunities you might miss while browsing job boards.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Who it's for
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Job seekers who apply to many roles and want a repeatable, measurable process.
+- Career switchers who need help matching skills to open roles.
+- Recruiters or coaches who want quick, personalized resume-tailoring and progress tracking tools.
 
-## Learn More
+Grindle automates resume tailoring, centralizes application tracking, and delivers actionable insights so you can apply more effectively and find the right role faster.
 
-To learn more about Next.js, take a look at the following resources:
+## What's to come (roadmap)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Authentication:** Implement authentication persistence (sessions/JWT) and connect the auth UI to the backend.
+- **Application Tracker Dashboard:** Kanban/column view of saved jobs with different status (Saved, Applied, Interviewing, Offer, Rejected)
+- **Analytics & Feedback:** Track # of applications, interviews, and response rate.
