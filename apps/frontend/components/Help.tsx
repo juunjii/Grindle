@@ -1,6 +1,6 @@
 import React from "react";
 
-function Help() {
+export function Help() {
   return (
     <>
       <div className="px-30 py-30" id="help">

@@ -11,7 +11,7 @@ import TableView from "./table-view"
 import AnalysisModal from "./analysis-modal"
 import { mockJobs } from "./mock-data"
 
-export default function Board() {
+export default function Tracker() {
   const [viewMode, setViewMode] = useState<"kanban" | "table">("kanban")
   const [showAnalysis, setShowAnalysis] = useState(false)
   const [searchTerm, setSearchTerm] = useState("")
@@ -30,7 +30,7 @@ export default function Board() {
 
   return (
     <main className="min-h-screen bg-background">
-      <DashboardHeader />
+      {/* <DashboardHeader /> */}
 
       <div className="border-b border-border">
         <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
@@ -48,7 +48,7 @@ export default function Board() {
                   />
                 </div>
               </div>
-
+              
               <Button className="bg-primary hover:bg-primary/90 text-primary-foreground gap-2">
                 <Plus className="w-4 h-4" />
                 Add New Application

@@ -2,9 +2,9 @@
 
 import React from "react";
 import Link from "next/link";
-import { FormField } from "@/app/components/index";
+import { FormField } from "@/components/components/index";
 
-const AuthForm = ({ mode }: { mode: "sign-up" | "login" }) => {
+export const AuthForm = ({ mode }: { mode: "sign-up" | "login" }) => {
   const isSignUp = mode === "sign-up";
   return (
     <>
@@ -61,5 +61,3 @@ const AuthForm = ({ mode }: { mode: "sign-up" | "login" }) => {
     </>
   );
 };
-
-export default AuthForm;

@@ -1,4 +1,4 @@
-import { Banner } from "@/app/components/index";
+import { Banner } from "@/components/components/index";
 import { ReactNode } from "react";
 
 const AuthLayout = ({ children }: { children: ReactNode }) => {

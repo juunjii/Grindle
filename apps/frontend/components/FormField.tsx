@@ -8,7 +8,7 @@ type FormFieldProps = {
   isSignUp?: boolean;
 };
 
-const FormField: FC<FormFieldProps> = ({
+export const FormField: FC<FormFieldProps> = ({
   label,
   type,
   name,
@@ -51,5 +51,3 @@ const FormField: FC<FormFieldProps> = ({
     </div>
   </div>
 );
-
-export default FormField;

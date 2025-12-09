@@ -1,9 +1,9 @@
 import React from "react";
 import Image from "next/image"; // image optimization
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
-const Hero = () => {
+export const Hero = () => {
   return (
     <section>
       <div className="md:pt-30 md:pb-50 text-center overflow-x-hidden">
@@ -38,5 +38,3 @@ const Hero = () => {
     </section>
   );
 };
-
-export default Hero;

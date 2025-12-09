@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-function Banner() {
+export function Banner() {
   return (
     <>
       <div className ="flex justify-center pt-5 md:justify-start md:pl-5">
@@ -19,5 +19,3 @@ function Banner() {
     </>
   );
 }
-
-export default Banner;

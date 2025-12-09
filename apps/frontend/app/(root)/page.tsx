@@ -1,9 +1,10 @@
-import { Header, Hero, Features, Help, Footer } from "@/app/components/index";
+import { HeaderProduct, Features, Help, Footer } from "@/components/index";
+import { Hero } from "./Hero";
 
 export default function Home() {
   return (
     <>
-      <Header />
+      <HeaderProduct />
       <Hero />
       <Features />
       <Help />

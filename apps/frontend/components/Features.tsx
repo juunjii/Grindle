@@ -2,9 +2,9 @@
 
 import React from "react";
 import { useState } from "react";
-import { FloatingNav } from "@/app/components/index";
+import { FloatingNav } from "./FloatingNav";
 
-function Features() {
+export function Features() {
   const [active, setActive] = useState();
   return (
     <>
@@ -20,7 +20,7 @@ function Features() {
             Visualize your progress with a kanban board designed for momentum,
             or dive into a table view that gives you a complete, sortable
             snapshot of every opportunity. It’s the simplest way to stay
-            motivated, informed, and prepared — every step of the way. 
+            motivated, informed, and prepared — every step of the way.
           </p>
           <p className="py-30">
             Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -88,5 +88,3 @@ function Features() {
     </>
   );
 }
-
-export default Features;

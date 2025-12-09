@@ -1,11 +1,24 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import Link from "next/link";
 
-const Header = () => {
+export const HeaderProduct = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Close the mobile menu when viewport is at or above the md breakpoint (768px)
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const navItems = [
     { name: "About", href: "#" },
@@ -20,7 +33,7 @@ const Header = () => {
 
   return (
     <header className="z-5 top-0 sticky backdrop-blur-sm">
-      <div className={`${isMenuOpen ? "pt-5 pb-83 " : "py-5"} `}>
+      <div className={`${isMenuOpen ? "pt-5 pb-100 " : "py-5"} `}>
         <div className="flex items-center md:gap-10 justify-between px-8 md:justify-self-center">
           <Link href="#">
             <Image
@@ -50,7 +63,6 @@ const Header = () => {
                   key={item.name}
                   href={item.href}
                   onClick={handleMenuClick}
-                  // scroll={false}
                 >
                   <li className="list-none w-full text-center p-4 cursor-pointer">
                     {item.name}
@@ -85,5 +97,3 @@ const Header = () => {
     </header>
   );
 };
-
-export default Header;

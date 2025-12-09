@@ -1,7 +1,7 @@
 import React from "react";
 import { ChartLine, NotebookPen, BriefcaseBusiness } from "lucide-react";
 
-function FloatingNav() {
+export function FloatingNav() {
   return (
     <div className="flex justify-center sticky top-30">
       <nav className="rounded-xl px-6 flex gap-10 text-black/30 text-xl bg-[#f7f7f7]">
@@ -28,5 +28,3 @@ function FloatingNav() {
     </div>
   );
 }
-
-export default FloatingNav;
