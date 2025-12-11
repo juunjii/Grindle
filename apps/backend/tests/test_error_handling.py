@@ -44,13 +44,13 @@ class TestDatabaseErrorHandling:
         assert "Network timeout" in response.json()["detail"]
     
     @patch("routers.applications.db_update_application")
-    def test_update_application_database_error(self, mock_update, client, test_user_id, test_application_data):
+    def test_update_application_database_error(self, mock_update, client, test_user_id):
         """Test update endpoint handles database errors gracefully."""
         mock_update.side_effect = HTTPException(status_code=400, detail="Invalid column update")
         
         response = client.patch(
             "/applications/1",
-            json=test_application_data,
+            json={"role": "Senior Engineer"},
             headers={"X-User-Id": test_user_id}
         )
         assert response.status_code == 400
@@ -128,7 +128,7 @@ class TestUserIsolation:
         assert response.status_code == 404
         
         # Verify the function was called with the correct user_id
-        mock_get.assert_called_once_with("1", "user-1")
+        mock_get.assert_called_once_with(1, "user-1")
     
     @patch("routers.applications.db_get_all_applications")
     def test_list_applications_user_isolation(self, mock_get, client):

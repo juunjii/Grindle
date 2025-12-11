@@ -99,27 +99,44 @@ class TestGetApplication:
 class TestUpdateApplication:
     """Test updating an application endpoint."""
     
-    def test_update_application_not_found(self, client, test_user_id, test_application_data):
+    def test_update_application_not_found(self, client, test_user_id):
         """Test updating a non-existent application returns 404."""
-        update_data = test_application_data.copy()
-        update_data["role"] = "New Role"
         response = client.patch(
             "/applications/99999",
-            json=update_data,
+            json={"role": "New Role"},
             headers={"X-User-Id": test_user_id}
         )
         assert response.status_code == 404
         assert "not found" in response.json()["detail"].lower()
     
-    def test_update_application_no_changes(self, client, test_user_id, test_application_data):
-        """Test patching with same data returns current object."""
+    def test_update_application_no_changes(self, client, test_user_id):
+        """Test patching with empty object returns 404 for non-existent app."""
         response = client.patch(
             "/applications/99999",
-            json=test_application_data,
+            json={},
             headers={"X-User-Id": test_user_id}
         )
         # Should return 404 since application doesn't exist
         assert response.status_code == 404
+
+    @patch("routers.applications.db_update_application")
+    def test_update_application_success(self, mock_update, client, test_user_id, test_application_data):
+        """Test updating an existing application returns updated object."""
+        updated = test_application_data.copy()
+        updated.update({"id": 1, "role": "Senior Engineer", "date_applied": date(2025, 12, 10)})
+        mock_update.return_value = updated
+
+        response = client.patch(
+            "/applications/1",
+            json={"id": 1, "role": "Senior Engineer", "company_name": "Test Company", "user_id": test_user_id, "date_applied": "2025-12-10"},
+            headers={"X-User-Id": test_user_id}
+        )
+
+        assert response.status_code == 200
+        data = response.json()
+        assert data["role"] == "Senior Engineer"
+        assert data["id"] == 1
+        mock_update.assert_called_once()
 
 
 class TestDeleteApplication:
@@ -133,3 +150,19 @@ class TestDeleteApplication:
         )
         assert response.status_code == 404
         assert "not found" in response.json()["detail"].lower()
+
+    @patch("routers.applications.db_delete_application")
+    def test_delete_application_success(self, mock_delete, client, test_user_id):
+        """Test deleting an existing application returns success message."""
+        mock_delete.return_value = {"id": 1, "user_id": test_user_id}
+
+        response = client.delete(
+            "/applications/1",
+            headers={"X-User-Id": test_user_id}
+        )
+
+        assert response.status_code == 200
+        data = response.json()
+        assert data["message"] == "Application deleted successfully"
+        assert data["id"] == 1
+        mock_delete.assert_called_once()
