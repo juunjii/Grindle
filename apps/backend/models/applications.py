@@ -9,6 +9,7 @@ class ApplicationStatus(str, Enum):
     OFFER = "OFFER"
     REJECTED = "REJECTED"
 
+# TODO: Add company_id field later when integrating with companies
 class Application(BaseModel):
     company_name: str
     user_id: str
@@ -20,10 +21,3 @@ class Application(BaseModel):
     salary: str | None = None
     date_applied: date
     notes: str | None = None
-
-class ApplicationUpdate(BaseModel):
-    role: str | None = None
-    status: str | None = None
-    date_applied: date  
-    notes: str | None = None
-
