@@ -10,8 +10,6 @@ class ApplicationStatus(str, Enum):
     REJECTED = "REJECTED"
 
 # TODO: Add company_id field later when integrating with companies
-
-
 class Application(BaseModel):
     id: int
     company_name: str
