@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Header, HTTPException
-from models import Application 
-from db import db_create_application, db_get_all_applications, db_get_application, db_delete_application
+from models import Application
+from db import db_create_application, db_get_all_applications, db_get_application, db_update_application, db_delete_application
 
 router = APIRouter()
 
@@ -8,13 +8,23 @@ router = APIRouter()
 async def list_applications(x_user_id: str | None = Header(None)):
     """List all job applications."""
     user_id = x_user_id or "dev-user"
-    return await db_get_all_applications(user_id)
+    result = await db_get_all_applications(user_id)
+
+    if not result:
+        return []
+
+    return result
 
 @router.post("/", response_model=Application)
 async def create_applications(application: Application, x_user_id: str | None = Header(None)):
     """Create a new job application."""
     user_id = x_user_id or "dev-user"
-    return await db_create_application(application, user_id)
+
+    result = await db_create_application(application, user_id)
+    if not result:
+        raise HTTPException(status_code=500, detail="Failed to create application")
+
+    return result
 
 @router.get("/{application_id}", response_model=Application)
 async def get_applications(application_id: str, x_user_id: str | None = Header(None)):
@@ -23,6 +33,24 @@ async def get_applications(application_id: str, x_user_id: str | None = Header(N
     result = await db_get_application(application_id, user_id)
     if result is None:
         raise HTTPException(status_code=404, detail="Application not found")
+    return result
+
+@router.patch("/{application_id}", response_model=Application)
+async def update_application(application_id: str, updates: Application, x_user_id: str | None = Header(None)):
+    """Update a specific application by ID."""
+    user_id = x_user_id or "dev-user"
+    update_data = updates.model_dump(mode="json", exclude_unset=True)
+    
+    # If no fields to update, return the current object
+    if not update_data:
+        result = await db_get_application(application_id, user_id)
+        if result is None:
+            raise HTTPException(status_code=404, detail="Application not found or unauthorized")
+        return result
+    
+    result = await db_update_application(application_id, user_id, update_data)
+    if result is None:
+        raise HTTPException(status_code=404, detail="Application not found or unauthorized")
     return result
 
 @router.delete("/{application_id}")
