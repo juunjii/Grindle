@@ -25,7 +25,7 @@ async def db_create_application(app: Application, user_id: str):
 
     return response.data[0]
 
-async def db_get_application(app_id: str, user_id: str):
+async def db_get_application(app_id: int, user_id: str):
     """Fetch a single application by ID, scoped to a user."""
     response = (
         supabase
@@ -38,7 +38,7 @@ async def db_get_application(app_id: str, user_id: str):
 
     return response.data[0] if response.data else None
 
-async def db_update_application(app_id: str, user_id: str, updates: dict):
+async def db_update_application(app_id: int, user_id: str, updates: dict):
     """Update a single application by ID, scoped to a user."""
     response = (
         supabase
@@ -51,7 +51,7 @@ async def db_update_application(app_id: str, user_id: str, updates: dict):
 
     return response.data[0] if response.data else None
 
-async def db_delete_application(app_id: str, user_id: str):
+async def db_delete_application(app_id: int, user_id: str):
     """Delete a single application by ID, scoped to a user."""
     response = (
         supabase

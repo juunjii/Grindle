@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Header, HTTPException
-from models import Application
+from models import Application, ApplicationCreate, ApplicationUpdate
 from db import db_create_application, db_get_all_applications, db_get_application, db_update_application, db_delete_application
 
 router = APIRouter()
@@ -15,8 +15,8 @@ async def list_applications(x_user_id: str | None = Header(None)):
 
     return result
 
-@router.post("/", response_model=Application)
-async def create_applications(application: Application, x_user_id: str | None = Header(None)):
+@router.post("/", response_model=ApplicationCreate)
+async def create_applications(application: ApplicationCreate, x_user_id: str | None = Header(None)):
     """Create a new job application."""
     user_id = x_user_id or "dev-user"
 
@@ -27,7 +27,7 @@ async def create_applications(application: Application, x_user_id: str | None = 
     return result
 
 @router.get("/{application_id}", response_model=Application)
-async def get_applications(application_id: str, x_user_id: str | None = Header(None)):
+async def get_applications(application_id: int, x_user_id: str | None = Header(None)):
     """Get a specific application by ID."""
     user_id = x_user_id or "dev-user"
     result = await db_get_application(application_id, user_id)
@@ -36,7 +36,7 @@ async def get_applications(application_id: str, x_user_id: str | None = Header(N
     return result
 
 @router.patch("/{application_id}", response_model=Application)
-async def update_application(application_id: str, updates: Application, x_user_id: str | None = Header(None)):
+async def update_application(application_id: int, updates: ApplicationUpdate, x_user_id: str | None = Header(None)):
     """Update a specific application by ID."""
     user_id = x_user_id or "dev-user"
     update_data = updates.model_dump(mode="json", exclude_unset=True)
@@ -54,7 +54,7 @@ async def update_application(application_id: str, updates: Application, x_user_i
     return result
 
 @router.delete("/{application_id}")
-async def delete_application(application_id: str, x_user_id: str | None = Header(None)):
+async def delete_application(application_id: int, x_user_id: str | None = Header(None)):
     """Delete a specific application by ID."""
     user_id = x_user_id or "dev-user"
     result = await db_delete_application(application_id, user_id)
