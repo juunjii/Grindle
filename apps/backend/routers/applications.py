@@ -1,6 +1,6 @@
-from fastapi import APIRouter, Header
+from fastapi import APIRouter, Header, HTTPException
 from models.applications import Application 
-from db.supabase_client import db_create_application, db_get_all_applications, db_get_application
+from db.supabase_client import db_create_application, db_get_all_applications, db_get_application, db_delete_application
 
 router = APIRouter()
 
@@ -20,4 +20,16 @@ async def create_applications(application: Application, x_user_id: str | None = 
 async def get_applications(application_id: str, x_user_id: str | None = Header(None)):
     """Get a specific application by ID."""
     user_id = x_user_id or "dev-user"
-    return await db_get_application(application_id, user_id)
+    result = await db_get_application(application_id, user_id)
+    if result is None:
+        raise HTTPException(status_code=404, detail="Application not found")
+    return result
+
+@router.delete("/{application_id}")
+async def delete_application(application_id: str, x_user_id: str | None = Header(None)):
+    """Delete a specific application by ID."""
+    user_id = x_user_id or "dev-user"
+    result = await db_delete_application(application_id, user_id)
+    if result is None:
+        raise HTTPException(status_code=404, detail="Application not found")
+    return {"message": "Application deleted successfully", "id": application_id}

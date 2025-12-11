@@ -32,3 +32,15 @@ async def db_get_application(app_id: str, user_id: str):
         .execute()
     )
     return response.data[0] if response.data else None
+
+async def db_delete_application(app_id: str, user_id: str):
+    """Delete a single application by ID, scoped to a user."""
+    response = (
+        supabase
+        .table("applications")
+        .delete()
+        .eq("id", app_id)
+        .eq("user_id", user_id)
+        .execute()
+    )
+    return response.data[0] if response.data else None
