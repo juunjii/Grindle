@@ -2,8 +2,6 @@ from pydantic import BaseModel
 from enum import Enum
 from datetime import date
 
-
-
 class ApplicationStatus(str, Enum):
     APPLIED = "APPLIED"
     SAVED = "SAVED"
