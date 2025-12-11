@@ -1,18 +1,32 @@
 from pydantic import BaseModel
-from typing import Optional
+from enum import Enum
 from datetime import date
 
-class ApplicationCreate(BaseModel):
-    company_id: int
+
+
+class ApplicationStatus(str, Enum):
+    APPLIED = "APPLIED"
+    SAVED = "SAVED"
+    INTERVIEW = "INTERVIEW"
+    OFFER = "OFFER"
+    REJECTED = "REJECTED"
+
+class Application(BaseModel):
+    company_name: str
+    user_id: str
     role: str
-    status: str = "applied"
-    applied_date: Optional[date] = None
-    resume_version: Optional[str] = None
-    notes: Optional[str] = None
+    status: ApplicationStatus = ApplicationStatus.APPLIED
+    location: str | None = None
+    job_link: str | None = None
+    
+    source: str | None = None
+    salary: str | None = None
+    date_applied: date
+    notes: str | None = None
 
 class ApplicationUpdate(BaseModel):
-    role: Optional[str] = None
-    status: Optional[str] = None
-    applied_date: Optional[date] = None
-    resume_version: Optional[str] = None
-    notes: Optional[str] = None
+    role: str | None = None
+    status: str | None = None
+    date_applied: date  
+    notes: str | None = None
+
