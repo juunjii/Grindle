@@ -1,6 +1,6 @@
 from supabase import create_client, Client
-from db.config import SUPABASE_URL, SUPABASE_KEY
-from models.applications import Application
+from db import SUPABASE_URL, SUPABASE_KEY
+from models import Application
 
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 

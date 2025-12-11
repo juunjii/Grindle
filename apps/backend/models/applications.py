@@ -16,7 +16,6 @@ class Application(BaseModel):
     status: ApplicationStatus = ApplicationStatus.APPLIED
     location: str | None = None
     job_link: str | None = None
-    
     source: str | None = None
     salary: str | None = None
     date_applied: date

@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Header, HTTPException
-from models.applications import Application 
-from db.supabase_client import db_create_application, db_get_all_applications, db_get_application, db_delete_application
+from models import Application 
+from db import db_create_application, db_get_all_applications, db_get_application, db_delete_application
 
 router = APIRouter()
 

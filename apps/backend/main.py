@@ -1,13 +1,11 @@
 import sys
 from pathlib import Path
-
-# Add the backend directory to Python path
-sys.path.insert(0, str(Path(__file__).parent))
-
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routers import applications, companies
 
+# Add the backend directory to Python path
+sys.path.insert(0, str(Path(__file__).parent))
 
 app = FastAPI(
     title="Grindle API",
