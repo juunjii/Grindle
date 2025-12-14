@@ -22,5 +22,6 @@ Grindle automates resume tailoring, centralizes application tracking, and delive
 ## What's to come (roadmap)
 
 - **Authentication:** Implement authentication persistence (sessions/JWT) and connect the auth UI to the backend.
-- **Application Tracker Dashboard:** Kanban/column view of saved jobs with different status (Saved, Applied, Interviewing, Offer, Rejected)
+- **Application Tracker Dashboard:** Kanban/column view of saved jobs with different status (Saved, Applied, Interviewing, Offer, Rejected) 
 - **Analytics & Feedback:** Track # of applications, interviews, and response rate.
+- **Application Status Automation:** Applications can be added/updated automatically via email parsing without user-intervention.
