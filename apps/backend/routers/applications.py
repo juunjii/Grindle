@@ -15,7 +15,7 @@ async def list_applications(x_user_id: str | None = Header(None)):
 
     return result
 
-@router.post("/", response_model=ApplicationCreate)
+@router.post("/", response_model=Application)
 async def create_applications(application: ApplicationCreate, x_user_id: str | None = Header(None)):
     """Create a new job application."""
     user_id = x_user_id or "dev-user"

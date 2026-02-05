@@ -25,7 +25,6 @@ class Application(BaseModel):
 
 class ApplicationCreate(BaseModel):
     company_name: str
-    user_id: str
     role: str
     status: ApplicationStatus = ApplicationStatus.APPLIED
     location: str | None = None

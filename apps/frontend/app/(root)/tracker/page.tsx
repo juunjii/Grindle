@@ -1,127 +1,157 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { Grid3x3, List, BarChart3, Plus, Search, Filter } from "lucide-react"
-import DashboardHeader from "./dashboard-header"
-import KanbanView from "./kanban-view"
-import TableView from "./table-view"
-import AnalysisModal from "./analysis-modal"
-import { mockJobs } from "./mock-data"
+import { useState } from "react";
+import { Loader2 } from "lucide-react";
+import KanbanView from "./kanban-view";
+import TableView from "./table-view";
+import AnalysisModal from "./analysis-modal";
+import AddApplicationDialog from "./add-application-dialog";
+import ApplicationDetailDialog from "./application-detail-dialog";
+import { TrackerToolbar } from "./components/TrackerToolbar";
+import { TrackerControls } from "./components/TrackerControls";
+import { useApplicationTracker } from "../../lib/hooks/useApplicationTracker";
+import { useTrackerFilters } from "../../lib/hooks/useTrackerFilters";
+import { useTrackerSelection } from "../../lib/hooks/useTrackerSelection";
+import type { Application } from "../../lib/types";
 
 export default function Tracker() {
-  const [viewMode, setViewMode] = useState<"kanban" | "table">("kanban")
-  const [showAnalysis, setShowAnalysis] = useState(false)
-  const [searchTerm, setSearchTerm] = useState("")
-  const [statusFilter, setStatusFilter] = useState<string | null>(null)
-  const [jobs, setJobs] = useState(mockJobs)
+  // UI State
+  const [viewMode, setViewMode] = useState<"kanban" | "table">("kanban");
+  const [showAnalysis, setShowAnalysis] = useState(false);
+  const [showAddDialog, setShowAddDialog] = useState(false);
+  const [showDetailDialog, setShowDetailDialog] = useState(false);
+  const [activeApplication, setActiveApplication] = useState<Application | null>(null);
 
-  const filteredJobs = jobs.filter((job) => {
-    const matchesSearch =
-      job.position.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      job.company.toLowerCase().includes(searchTerm.toLowerCase())
-    const matchesStatus = !statusFilter || job.status === statusFilter
-    return matchesSearch && matchesStatus
-  })
+  // Custom Hooks
+  const {
+    jobs,
+    isLoading,
+    isRefreshing,
+    error,
+    handleRefresh,
+    handleAddApplication,
+    handleDeleteApplication,
+    handleBulkDelete,
+    handleMoveStatus,
+    handleSaveDetail,
+  } = useApplicationTracker();
 
-  const appliedCount = jobs.filter((job) => job.status === "Applied").length
+  const { searchTerm, setSearchTerm, statusFilter, setStatusFilter, filteredJobs } =
+    useTrackerFilters(jobs);
+
+  const { selectedIds, handleToggleSelect, handleToggleSelectAll, clearSelection } =
+    useTrackerSelection();
+
+  // Computed Values
+  const appliedCount = jobs.filter((job) => job.status === "Applied").length;
+
+  // Handlers
+  const handleOpenDetail = (job: any) => {
+    if (job?.application) {
+      setActiveApplication(job.application);
+      setShowDetailDialog(true);
+    }
+  };
+
+  const closeDetailDialog = () => {
+    setShowDetailDialog(false);
+    setActiveApplication(null);
+  };
+
+  const onBulkDelete = async () => {
+    await handleBulkDelete(selectedIds, clearSelection);
+  };
 
   return (
     <main className="min-h-screen bg-background">
-      {/* <DashboardHeader /> */}
+      {/* Error Alert */}
+      {error && (
+        <div className="bg-destructive/10 border border-destructive/50 text-destructive p-4 mb-4">
+          <p className="font-medium">{error}</p>
+        </div>
+      )}
 
-      <div className="border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col gap-4">
-            {/* Top Section: Search and Actions */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-              <div className="flex-1 flex gap-2">
-                <div className="flex-1 relative">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                  <Input
-                    placeholder="Search jobs..."
-                    className="pl-10"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                  />
-                </div>
-              </div>
-              
-              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground gap-2">
-                <Plus className="w-4 h-4" />
-                Add New Application
-              </Button>
-            </div>
+      {/* Loading State */}
+      {isLoading && (
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="text-center">
+            <Loader2 className="w-4 h-4 animate-spin mx-auto mb-4 text-primary" />
+            <p className="text-muted-foreground">Loading your applications...</p>
+          </div>
+        </div>
+      )}
 
-            {/* View Controls */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-              <div className="flex items-center gap-2">
-                <span className="text-sm font-medium">
-                  Applied: <span className="text-primary font-bold">{appliedCount}</span> Jobs
-                </span>
-              </div>
+      {!isLoading && (
+        <>
+          <div className="border-b border-border">
+            <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
+              <div className="flex flex-col gap-4">
+                {/* Toolbar with search and actions */}
+                <TrackerToolbar
+                  searchTerm={searchTerm}
+                  onSearchChange={setSearchTerm}
+                  onRefresh={handleRefresh}
+                  isRefreshing={isRefreshing}
+                  onAddNew={() => setShowAddDialog(true)}
+                />
 
-              <div className="flex items-center gap-2">
-                {/* View Toggle */}
-                <div className="flex items-center border border-border rounded-lg p-1 bg-muted">
-                  <Button
-                    variant={viewMode === "kanban" ? "default" : "ghost"}
-                    size="sm"
-                    onClick={() => setViewMode("kanban")}
-                    className="gap-2"
-                  >
-                    <Grid3x3 className="w-4 h-4" />
-                    <span className="hidden sm:inline">Kanban</span>
-                  </Button>
-                  <Button
-                    variant={viewMode === "table" ? "default" : "ghost"}
-                    size="sm"
-                    onClick={() => setViewMode("table")}
-                    className="gap-2"
-                  >
-                    <List className="w-4 h-4" />
-                    <span className="hidden sm:inline">Table</span>
-                  </Button>
-                </div>
-
-                {/* Filter Dropdown */}
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="outline" size="sm" className="gap-2 bg-transparent">
-                      <Filter className="w-4 h-4" />
-                      <span className="hidden sm:inline">Filter</span>
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end">
-                    <DropdownMenuItem onClick={() => setStatusFilter(null)}>All Statuses</DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => setStatusFilter("Saved")}>Saved</DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => setStatusFilter("Applied")}>Applied</DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => setStatusFilter("Interviewing")}>Interviewing</DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => setStatusFilter("Offer")}>Offer</DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => setStatusFilter("Rejected")}>Rejected</DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-
-                {/* Analysis Button */}
-                <Button onClick={() => setShowAnalysis(true)} variant="outline" size="sm" className="gap-2">
-                  <BarChart3 className="w-4 h-4" />
-                  <span className="hidden sm:inline">Analysis</span>
-                </Button>
+                {/* Controls with stats, delete, view mode, and filters */}
+                <TrackerControls
+                  appliedCount={appliedCount}
+                  selectedCount={selectedIds.length}
+                  viewMode={viewMode}
+                  onViewModeChange={setViewMode}
+                  statusFilter={statusFilter}
+                  onStatusFilterChange={setStatusFilter}
+                  onAnalysis={() => setShowAnalysis(true)}
+                  onBulkDelete={onBulkDelete}
+                  isBulkDeleting={false}
+                />
               </div>
             </div>
           </div>
-        </div>
-      </div>
 
-      {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
-        {viewMode === "kanban" ? <KanbanView jobs={filteredJobs} /> : <TableView jobs={filteredJobs} />}
-      </div>
+          {/* Main Content */}
+          <div className="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
+            {viewMode === "kanban" ? (
+              <KanbanView
+                jobs={filteredJobs}
+                onDelete={handleDeleteApplication}
+                onOpenDetail={handleOpenDetail}
+                onMoveStatus={handleMoveStatus}
+              />
+            ) : (
+              <TableView
+                jobs={filteredJobs}
+                selectedIds={selectedIds}
+                onToggleSelect={handleToggleSelect}
+                onToggleSelectAll={() => handleToggleSelectAll(filteredJobs.map(j => j.id))}
+                onRowClick={handleOpenDetail}
+              />
+            )}
+          </div>
 
-      {/* Analysis Modal */}
-      <AnalysisModal isOpen={showAnalysis} onClose={() => setShowAnalysis(false)} jobs={jobs} />
+          {/* Modals */}
+          <AnalysisModal
+            isOpen={showAnalysis}
+            onClose={() => setShowAnalysis(false)}
+            jobs={jobs}
+          />
+
+          <AddApplicationDialog
+            isOpen={showAddDialog}
+            onClose={() => setShowAddDialog(false)}
+            onAdd={handleAddApplication}
+          />
+
+          <ApplicationDetailDialog
+            isOpen={showDetailDialog}
+            onClose={closeDetailDialog}
+            application={activeApplication}
+            onSave={handleSaveDetail}
+          />
+        </>
+      )}
     </main>
-  )
+  );
 }
